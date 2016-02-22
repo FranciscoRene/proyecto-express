@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div.top
+    form.form-horizontal(id="loginForm")
+      label Username
+      input.span3(id="username", type="text", name="User", placeholder="Enter your username")
+      label Password
+      input.span3(id="password", type="password", name="Password")
+      input.btn(id="enviar" type="button", value="Log In")
+  script.
+    $("#enviar").click(function(){
+      $.ajax({
+               type: "POST",
+               url: "/test",
+               data: $("#loginForm").serialize(), 
+               success: function(data)
+               {
+                   alert(data); // show response from the php script.
+               }
+             });    
+    })
+
+
